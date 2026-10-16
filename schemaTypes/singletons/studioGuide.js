@@ -19,7 +19,7 @@ export default defineType({
     // =========================================================================
     defineField({
       name: 'introduction',
-      title: 'Boas-vindas e Visão Geral',
+      title: 'Visão Geral',
       type: 'text',
       rows: 4,
       group: 'general',
@@ -28,10 +28,22 @@ export default defineType({
     }),
 
     defineField({
-      name: 'manualPdf',
+      name: 'manualPdf1',
+      title: 'Manual de Boas Vindas ao Sanity Studio (PDF)',
+      description:
+        'Usuário, faça o download do Manual de Boas Vindas Sanity.',
+      type: 'file',
+      group: 'general',
+      options: {
+        accept: '.pdf',
+      },
+    }),
+
+    defineField({
+      name: 'manualPdf2',
       title: 'Manual de Uso do Painel (PDF)',
       description:
-        'Usuário, faça o download do Manual de uso do Painel Sanity. Ou faça upload de um novo arquivo.',
+        'Usuário, faça o download do Manual de uso do Painel Sanity.',
       type: 'file',
       group: 'general',
       options: {
