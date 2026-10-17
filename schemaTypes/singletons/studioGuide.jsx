@@ -27,27 +27,98 @@ export default defineType({
         'Bem-vindo ao painel de controle do seu site! Este painel foi estruturado para dar total autonomia na gestão de páginas, serviços, portfólio, agenda e leads. Siga as orientações abaixo antes de publicar novos conteúdos.',
     }),
 
+    // =========================================================================
+    // MANUAIS DE USO - ARQUIVOS FIXOS (PASTA PUBLIC)
+    // =========================================================================
     defineField({
-      name: 'manualPdf1',
-      title: 'Manual de Boas Vindas ao Sanity Studio (PDF)',
-      description:
-        'Usuário, faça o download do Manual de Boas Vindas Sanity.',
-      type: 'file',
+      name: 'manualPdf1Notice',
+      title: '📖 Manual 1: Boas-Vindas ao Sanity Studio',
+      type: 'string',
       group: 'general',
-      options: {
-        accept: '.pdf',
+      components: {
+        field: () => (
+          <div
+            style={{
+              padding: '16px',
+              borderRadius: '6px',
+              backgroundColor: 'transparent',
+              border: '1px solid #cad5e2',
+              marginBottom: '16px',
+            }}
+          >
+            <h4 style={{margin: '0 0 6px 0', fontSize: '14px', fontWeight: 600, color: 'inherit'}}>
+              📘 Manual de Boas-Vindas Sanity Studio
+            </h4>
+            <p style={{margin: '0 0 12px 0', fontSize: '13px', opacity: 0.8, lineHeight: '1.4'}}>
+              Guia introdutório para novos usuários do sistema. Clique no botão abaixo para visualizar ou baixar o documento em PDF.
+            </p>
+            <a
+              href="/boas-vindas-sanitystudio.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '6px 12px',
+                backgroundColor: '#2563eb',
+                color: '#ffffff',
+                borderRadius: '4px',
+                textDecoration: 'none',
+                fontWeight: '500',
+                fontSize: '12px',
+              }}
+            >
+              ⬇️ Baixar Manual de Boas-Vindas (PDF)
+            </a>
+          </div>
+        ),
       },
     }),
 
     defineField({
-      name: 'manualPdf2',
-      title: 'Manual de Uso do Painel (PDF)',
-      description:
-        'Usuário, faça o download do Manual de uso do Painel Sanity.',
-      type: 'file',
+      name: 'manualPdf2Notice',
+      title: '📘 Manual 2: Guia Prático do Painel',
+      type: 'string',
       group: 'general',
-      options: {
-        accept: '.pdf',
+      components: {
+        field: () => (
+          <div
+            style={{
+              padding: '16px',
+              borderRadius: '6px',
+              backgroundColor: 'transparent',
+              border: '1px solid #cad5e2',
+              marginBottom: '16px',
+            }}
+          >
+            <h4 style={{margin: '0 0 6px 0', fontSize: '14px', fontWeight: 600, color: 'inherit'}}>
+              📗 Manual de Uso do Painel Sanity
+            </h4>
+            <p style={{margin: '0 0 12px 0', fontSize: '13px', opacity: 0.8, lineHeight: '1.4'}}>
+              Instruções detalhadas para preenchimento de cadastros, conteúdos e mídias. Clique no botão abaixo para acessar o manual completo.
+            </p>
+            <a
+              href="/guia-usuario-sanitystudio.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '6px 12px',
+                backgroundColor: '#2563eb',
+                color: '#ffffff',
+                borderRadius: '4px',
+                textDecoration: 'none',
+                fontWeight: '500',
+                fontSize: '12px',
+              }}
+            >
+              ⬇️ Baixar Manual do Painel (PDF)
+            </a>
+          </div>
+        ),
       },
     }),
 
