@@ -20,7 +20,7 @@ if (typeof document !== 'undefined') {
 
 export default defineConfig({
   name: 'default',
-  title: 'Tattoo Studio',
+  title: 'Sanity Template',
 
   projectId: '86xipl79',
   dataset: 'production',

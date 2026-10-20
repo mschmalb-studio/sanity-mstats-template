@@ -15,7 +15,7 @@ function imageField(config) {
     title: config.title,
     description: config.description,
     type: 'image',
-    group: ['media', 'colors', 'typography'],
+    group: config.group || 'media', // Recebe o grupo enviado na chamada
     fieldset: config.fieldset,
     options: {
       hotspot: true,
@@ -38,7 +38,7 @@ function colorField(config) {
     title: config.title,
     description: config.description,
     type: 'color',
-    group: ['media', 'colors', 'typography'],
+    group: config.group || 'colors', // Vincula especificamente ao grupo de cores
     fieldset: 'palette',
     options: {
       disableAlpha: true,
@@ -61,7 +61,7 @@ export default defineType({
     {name: 'logos', title: '📂 Logotipos Principais (Header / Footer)', options: {columns: 2}},
     {name: 'icons', title: '📂 Ícones e Símbolos Reduzidos', options: {columns: 2}},
     {name: 'browser', title: '📂 Configuração de Navegador', options: {columns: 1}},
-    {name: 'palette', title: '🎨 Kit de Cores da Marca (Padrão Sólido)', options: {columns: 3}},
+    {name: 'palette', title: '🎨 Kit de Cores da Marca (Padrão Sólido)', options: {columns: 1}},
     {name: 'typeGroup', title: '✍ Hierarquia Tipográfica', options: {columns: 1}},
   ],
 
@@ -72,24 +72,28 @@ export default defineType({
       title: 'Logo Principal',
       description: 'Versão principal para fundos claros.',
       fieldset: 'logos',
+      group: 'media',
     }),
     imageField({
       name: 'logoSecondary',
       title: 'Logo Secundária',
       description: 'Versão adaptada para fundos escuros.',
       fieldset: 'logos',
+      group: 'media',
     }),
     imageField({
       name: 'iconMain',
       title: 'Ícone / Símbolo',
       description: 'Símbolo isolado da marca.',
       fieldset: 'icons',
+      group: 'media',
     }),
     imageField({
       name: 'iconSecondary',
       title: 'Ícone (Versão Clara)',
       description: 'Símbolo adaptado para fundos escuros.',
       fieldset: 'icons',
+      group: 'media',
     }),
 
     defineField({
@@ -97,7 +101,7 @@ export default defineType({
       title: 'Favicon do Site',
       description: 'Ícone da aba do navegador. Envie uma imagem quadrada (ex: 512x512px).',
       type: 'image',
-      group: ['media', 'colors', 'typography'],
+      group: 'media',
       fieldset: 'browser',
       options: {hotspot: true},
     }),
@@ -107,16 +111,19 @@ export default defineType({
       name: 'colorPrimary',
       title: 'Cor Primária',
       description: 'Principal (#111111)',
+      group: 'colors',
     }),
     colorField({
       name: 'colorSecondary',
       title: 'Cor Secundária',
       description: 'Fundo (#F9F9F8)',
+      group: 'colors',
     }),
     colorField({
       name: 'colorAccent',
       title: 'Cor de Destaque',
       description: 'Apoio (#666666)',
+      group: 'colors',
     }),
 
     // --- BLOCO 3: TIPOGRAFIA ---
@@ -124,7 +131,8 @@ export default defineType({
       name: 'fontHeading',
       title: 'Fonte dos Títulos',
       type: 'string',
-      group: ['media', 'colors', 'typography'],
+      group: 'typography',
+      fieldset: 'typeGroup',
       components: {
         input: HeadingFontInput,
       },
@@ -133,7 +141,8 @@ export default defineType({
       name: 'fontSubheading',
       title: 'Fonte dos Subtítulos',
       type: 'string',
-      group: ['media', 'colors', 'typography'],
+      group: 'typography',
+      fieldset: 'typeGroup',
       components: {
         input: SubheadingFontInput,
       },
@@ -142,14 +151,15 @@ export default defineType({
       name: 'fontBody',
       title: 'Fonte do Corpo de Texto',
       type: 'string',
-      group: ['media', 'colors', 'typography'],
+      group: 'typography',
+      fieldset: 'typeGroup',
       components: {
         input: BodyFontInput,
       },
     }),
 
     // --- RODAPÉ GLOBAL LIMPO ---
-    getGlobalFooterField(['media', 'colors', 'typography']),
+    getGlobalFooterField('media'),
   ],
 
   preview: {
