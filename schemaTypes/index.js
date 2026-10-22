@@ -19,6 +19,7 @@ import category from './documents/category'
 import faq from './documents/faq'
 import downloadable from './documents/downloadable'
 import formSubmission from './documents/formSubmission'
+import supportAsset from './documents/supportAsset'
 
 // 3. Objects (Arquivos em: ./objects/)
 import formBuilder from './objects/formBuilder'
@@ -44,6 +45,7 @@ export const schemaTypes = [
   faq,
   downloadable,
   formSubmission,
+  supportAsset,
 
   // Objects (Blocos Reutilizáveis)
   formBuilder,

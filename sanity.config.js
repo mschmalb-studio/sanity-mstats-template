@@ -172,6 +172,14 @@ export default defineConfig({
               
               S.divider(),
 
+              // Banco de Recursos & Mídias (Lista)
+            S.listItem()
+              .title('Banco de Recursos')
+              .schemaType('supportAsset')
+              .child(S.documentTypeList('supportAsset').title('Recursos & Mídias de Apoio')),
+
+            S.divider(),
+
           ]),
     }),
     visionTool(),
