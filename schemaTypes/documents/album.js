@@ -64,20 +64,35 @@ export default defineType({
       type: 'reference',
       to: [{type: 'album'}],
       group: 'hierarchy',
-      description: 'Deixe em branco se este for um álbum principal/raiz. Selecione um álbum caso este seja um sub-álbum (ex: Série dentro de uma Coleção).',
+      description: 'Deixe em branco se este for um álbum principal/raiz. Selecione um álbum caso este seja um sub-álbum (ex: Residências dentro de Arquitetura).',
       options: {
-        filter: '_id != $id', // Evita que o álbum aponte para si mesmo
+        // Filtro dinâmico seguro para evitar que o álbum aponte para si mesmo (cobre rascunhos e publicados)
+        filter: ({document}) => {
+          const documentId = document._id.replace(/^drafts\./, '')
+          return {
+            filter: '_id != $nativeId && _id != $draftId',
+            params: {
+              nativeId: documentId,
+              draftId: `drafts.${documentId}`,
+            },
+          }
+        },
       },
     }),
 
-    // --- FILTROS AUTOMÁTICOS (ÍMÃS) ---
+    // --- FILTROS AUTOMÁTICOS (ÍMÃS MÚLTIPLOS) ---
     defineField({
-      name: 'filterCategory',
-      title: 'Filtrar por Categoria (Obrigatório para automação)',
-      type: 'reference',
-      to: [{type: 'category'}],
+      name: 'filterCategories',
+      title: 'Filtrar por Categorias (Ímãs Múltiplos)',
+      type: 'array',
       group: 'rules',
-      description: 'Define qual categoria de projetos este álbum vai puxar automaticamente (ex: Escultura, Pintura).',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'category'}],
+        },
+      ],
+      description: 'Selecione uma ou mais categorias para este álbum puxar projetos automaticamente (ex: Residencial e Comercial para o álbum Arquitetura).',
     }),
     defineField({
       name: 'filterTags',
@@ -88,7 +103,7 @@ export default defineType({
       options: {
         layout: 'tags',
       },
-      description: 'Insira tags correspondentes (ex: 2026, destaque). O álbum trará projetos da categoria acima que contenham estas tags.',
+      description: 'Insira tags correspondentes (ex: 2026, destaque). O álbum trará projetos das categorias acima que contenham estas tags.',
     }),
 
     // --- CURADORIA MANUAL ---
@@ -103,7 +118,7 @@ export default defineType({
           to: [{type: 'project'}],
         },
       ],
-      description: 'Use esta lista para forçar a inclusão ou ordenação manual de projetos específicos que talvez não entrem pelas regras automáticas.',
+      description: 'Use esta lista para forçar a inclusão ou ordenação manual de projetos específicos.',
     }),
 
     // --- CONTEÚDO / DESCRIÇÃO LONGA ---
@@ -113,7 +128,7 @@ export default defineType({
       type: 'array',
       of: [{type: 'block'}],
       group: 'general',
-      description: 'Texto introdutório para galerias que possuem uma curadoria ou manifesto próprio.',
+      description: 'Texto introdutório para galerias.',
     }),
 
     // --- RODAPÉ GLOBAL ---
