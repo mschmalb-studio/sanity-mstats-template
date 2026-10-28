@@ -1,7 +1,6 @@
 // ============================================================================
 // SCHEMA — PÁGINA INICIAL / HERO SECTION (homeSettings)
 // ----------------------------------------------------------------------------
-defineField
 import {defineField, defineType} from 'sanity'
 import {getGlobalFooterField} from '../../utils/globalFooter'
 

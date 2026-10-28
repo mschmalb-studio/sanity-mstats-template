@@ -187,9 +187,7 @@ export default defineType({
             },
           },
         },
-      ],
-    }),
-    
+         
         // 6. Bloco de Downloads / Recursos
         {
           type: 'object',
@@ -213,7 +211,9 @@ export default defineType({
             },
           },
         },
-
+      ],
+    }),
+    
     // --- SEO E METADADOS ---
     defineField({
       name: 'seoTitle',
